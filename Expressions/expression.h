@@ -2,5 +2,10 @@
 #ifndef EXPRESSION_NODE
 #define EXPRESSION_NODE
 
-class ExpressionNode:AstNode{};
+
+template <typename T>
+class ExpressionNode:AstNode{
+    public:
+    virtual T get_value()=0;
+};
 #endif
