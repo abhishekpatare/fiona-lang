@@ -1,5 +1,6 @@
 #include "IntegerExpression.h"
 
+IntegerLiteralNode::IntegerLiteralNode(int value):value(value){};
 int IntegerLiteralNode::get_value(){
     return this->value;
 }
@@ -13,6 +14,7 @@ sid IntegerConstantNode::get_sid(){
 }
 
 //IntegerAddition
+IntegerAdditionNode::IntegerAdditionNode(IntegerExpressionNode *left,IntegerExpressionNode *right):IntegerArithmeticNode(left,right){};
 int IntegerAdditionNode::get_value(){
     int left_value = this->left->get_value();
     int right_value = this->right->get_value();
@@ -20,6 +22,7 @@ int IntegerAdditionNode::get_value(){
 }
 
 // IntegerSubtraction
+IntegerSubtractionNode::IntegerSubtractionNode(IntegerExpressionNode *left,IntegerExpressionNode *right):IntegerArithmeticNode(left,right){};
 int IntegerSubtractionNode::get_value(){
     int left_value = this->left->get_value();
     int right_value = this->right->get_value();
@@ -27,6 +30,7 @@ int IntegerSubtractionNode::get_value(){
 }
 
 // IntegerMultiplication
+IntegerMultiplicationNode::IntegerMultiplicationNode(IntegerExpressionNode *left,IntegerExpressionNode *right):IntegerArithmeticNode(left,right){};
 int IntegerMultiplicationNode::get_value(){
     int left_value = this->left->get_value();
     int right_value = this->right->get_value();
@@ -34,6 +38,7 @@ int IntegerMultiplicationNode::get_value(){
 }
 
 // IntegerDivision
+IntegerDivisionionNode::IntegerDivisionionNode(IntegerExpressionNode *left,IntegerExpressionNode *right):IntegerArithmeticNode(left,right){};
 int IntegerDivisionionNode::get_value(){
     int left_value = this->left->get_value();
     int right_value = this->right->get_value();
