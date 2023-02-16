@@ -2,18 +2,23 @@
 #include "../expression.h"
 #include "SymTabEntry.h"
 
-class BooleanExpression:public ExpressionNode<bool>{
-    public:
-    virtual bool get_value()=0;
-};
+
+
 
 //BooleanLiteralNode
+
+BooleanLiteralNode::BooleanLiteralNode(bool value){
+    this->value=value;
+}
+
 bool BooleanLiteralNode::get_value(){
     return this->value;
 }
 
 
 //BooleanConstantNode
+
+
 bool BooleanConstantNode::get_value(){
     // return this->value;
     //todo
@@ -31,6 +36,10 @@ bool BooleanVariableNode::get_value(){
 
 
 //BooleanOrNode
+BooleanOrNode::BooleanOrNode(BooleanExpression *left, BooleanExpression *right):BooleanOperationNode(left, right){
+    
+}
+
 bool BooleanOrNode::get_value(){
     bool left = this->left->get_value();
     bool right =  this->right->get_value();
@@ -39,6 +48,9 @@ bool BooleanOrNode::get_value(){
 
 
 //BooleanAndNode
+BooleanAndNode::BooleanAndNode(BooleanExpression *left, BooleanExpression *right):BooleanOperationNode(left, right){
+
+}
 bool BooleanAndNode::get_value(){
     bool left = this->left->get_value();
     bool right =  this->right->get_value();
@@ -47,6 +59,9 @@ bool BooleanAndNode::get_value(){
 
 
 //BooleanXorNode
+BooleanXorNode::BooleanXorNode(BooleanExpression *left, BooleanExpression *right):BooleanOperationNode(left, right){
+
+}
 bool BooleanXorNode::get_value(){
     bool left = this->left->get_value();
     bool right =  this->right->get_value();
@@ -55,6 +70,9 @@ bool BooleanXorNode::get_value(){
 
 
 //BooleanNotNode
+BooleanNotNode::BooleanNotNode(bool value){
+    this->value=value;
+}
 bool BooleanNotNode::get_value(){
     return (!this->value);
 }

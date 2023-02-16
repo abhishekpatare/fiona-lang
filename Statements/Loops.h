@@ -11,6 +11,7 @@ class LoopNode:public StatementNode{
 };
 class WhileNode:public StatementNode{
     BooleanExpression *cond;
+    BlockNode *blk;
     void exceute();
 };
 class ForNode:public StatementNode{
