@@ -9,11 +9,13 @@ template<typename T>
 class PrintNode:public StatementNode{
     ExpressionNode<T>*exp;
     public:
-    virtual void execute();
+    PrintNode<T>(ExpressionNode<T>*exp);
+    void execute();
 };
 class ScanNode:public StatementNode{
     sid id;
     public:
+    ScanNode(sid id);
     void execute();
 };
 
