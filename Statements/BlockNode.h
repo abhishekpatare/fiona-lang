@@ -1,6 +1,6 @@
 #include "statement.h"
-#ifndef BLACK_NODE
-#define BLACK_NODE
+#ifndef BLOCK_NODE
+#define BLOCK_NODE
 class BlockNode:StatementNode{
 
 };
