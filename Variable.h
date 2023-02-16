@@ -4,6 +4,8 @@
 #define VARIABLE_NODE
 
 class Variable{
+    protected:
+    sid id;
     public:
     virtual sid get_sid()=0;
 };
