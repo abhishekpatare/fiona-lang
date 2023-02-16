@@ -10,7 +10,8 @@ class LoopNode:public StatementNode{
         void execute();
 };
 class WhileNode:public StatementNode{
-    bool cond;
+    BooleanExpression *cond;
+    void exceute();
 };
 class ForNode:public StatementNode{
 

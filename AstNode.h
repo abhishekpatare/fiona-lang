@@ -5,7 +5,7 @@
 
 class AstNode{
     public:
-    virtual ExecObj* execute()=0;
+    //virtual ExecObj* execute()=0;
 };
 
 #endif
