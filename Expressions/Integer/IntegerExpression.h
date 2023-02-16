@@ -1,24 +1,30 @@
 #include "expression.h"
 #include "../SymbolTable/SymTabEntry.h"
+#include "../../Variable.h"
 #ifndef INTEGEREXPRESSION_NODE
 #define INTEGEREXPRESSION_NODE
+
 
 class IntegerExpressionNode : public ExpressionNode<int>{
 };
 
-class IntegerLiteralNode:public IntegerExpressionNode{
+class Integer:public IntegerExpressionNode{
+
+};
+
+class IntegerLiteralNode:public Integer{
     int value;
     public:
     virtual int get_value();
 };
 
-class IntegerConstantNode:public IntegerExpressionNode{
+class IntegerConstantNode:public Integer{
     const_sid id;
     public:
     int get_value();
     const_sid get_sid();
 };
-class IntegerVariableNode:public IntegerExpressionNode , Variable{
+class IntegerVariableNode:public Integer , Variable{
     sid id;
     public:
     int get_value();
