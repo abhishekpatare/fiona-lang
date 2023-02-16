@@ -9,21 +9,24 @@
 class LoopNode:public StatementNode{
     BlockNode *blk;
     public:
-        void execute();
+    LoopNode(BlockNode *blk);
+    void execute();
 };
 class WhileNode:public StatementNode{
     BooleanExpression *cond;
     BlockNode *blk;
 
     public:
+    WhileNode(BooleanExpression *cond,BlockNode *blk);
     void execute();
 };
 class ForNode:public StatementNode{
-    Variable *i;
+    sid id;
     Integer *l, *r;
     BlockNode *blk;
 
     public:
+    ForNode(sid id , Integer*l,Integer*r);
     void execute();
 };
 

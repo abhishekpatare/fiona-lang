@@ -1,11 +1,13 @@
 #include "statement.h"
-#include <vector>
+
+
 #ifndef BLOCK_NODE
 #define BLOCK_NODE
 class BlockNode:StatementNode{
-    std::vector<StatementNode*> statements;
+    StatementNode *st1,*st2;
 
     public:
+    BlockNode(StatementNode*st1,StatementNode*st2);
     void execute();
 };
 #endif

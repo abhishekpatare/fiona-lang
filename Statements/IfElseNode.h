@@ -7,6 +7,8 @@ class IfElseNode:public StatementNode{
     BooleanExpression* cond;
     BlockNode *blk1,*blk2;
     public:
+    IfElseNode(BooleanExpression*cond,BlockNode*blk1,BlockNode*blk2);
     void execute();
+
 };
 #endif
