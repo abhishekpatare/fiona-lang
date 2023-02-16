@@ -1,10 +1,12 @@
 #ifndef SYM_TAB_ENTRY
 #define SYM_TAB_ENTRY
 
+typedef unsigned int sid;
+
 class SymTabEntry{
     public:
     int get_value();
-    int get_sid();
+    sid get_sid();
 };
 
 #endif
