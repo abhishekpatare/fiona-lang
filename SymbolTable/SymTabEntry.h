@@ -8,7 +8,7 @@ typedef unsigned int const_sid;
 class SymTabEntry{
     public:
     int get_value();
-    int get_sid();
+    sid get_sid();
 };
 
 #endif
