@@ -1,0 +1,10 @@
+#include "statement.h"
+class LoopNode:public StatementNode{
+
+};
+class WhileNode:public StatementNode{
+
+};
+class ForNode:public StatementNode{
+
+};

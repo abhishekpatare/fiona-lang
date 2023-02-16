@@ -1,0 +1,8 @@
+#include "statement.h"
+
+class PrintNode:public StatementNode{
+
+};
+class ScanIntNode:public StatementNode{
+
+};
