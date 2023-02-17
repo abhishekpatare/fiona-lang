@@ -1,4 +1,4 @@
-#include "./SymbolTable/SymTabEntry.h"
+#include "./SymbolTable/SymTab.h"
 
 #ifndef VARIABLE_NODE
 #define VARIABLE_NODE

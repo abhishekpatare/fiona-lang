@@ -1,5 +1,5 @@
 #include "expression.h"
-#include "../SymbolTable/SymTabEntry.h"
+#include "../SymbolTable/SymTab.h"
 #include "../../Variable.h"
 #ifndef INTEGEREXPRESSION_NODE
 #define INTEGEREXPRESSION_NODE

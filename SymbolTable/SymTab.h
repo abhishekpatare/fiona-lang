@@ -1,4 +1,6 @@
 #include <string>
+#include <vector>
+#include <map>
 #ifndef SYM_TAB
 #define SYM_TAB
 
@@ -6,23 +8,31 @@ typedef unsigned int sid;
 typedef unsigned int const_sid;
 typedef std::string identifier;
 
-enum dtypes{BOOL, INT, NONE};
+enum dtype{BOOL, INT, NONE};
+
+class SymTabEntry{
+    public:
+    identifier id;
+    dtype type;
+    void *ptr;
+
+};
+
 
 template<typename T>
-class VarTab{
+class SymTab{
     int tab_size;
-    vector<bool> is_filled;
-    vector<T> entries;
-    map<identifier, sid> sid_dict;
-    map<sid, identifier> identifier_dict;
+    std::vector<bool> is_filled;
+    std::vector<SymTabEntry*> entries;
+    std::map<identifier, sid> identifier_dict;
     
 
     public:
-    VarTab(int size);
-    bool lookup(string identifier);
-    void insert(string identifier, T value);
+    SymTab(int size);
+    dtype lookup(identifier name);
+    void insert(identifier name, T value);
     T get_value(sid id);
-    sid get_sid(string identifier);
+    sid get_sid(identifier name);
 };
 
 
