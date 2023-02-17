@@ -19,7 +19,7 @@ class SymTabEntry{
 };
 
 
-template<typename T>
+
 class SymTab{
     int tab_size;
     std::vector<bool> is_filled;
@@ -30,9 +30,12 @@ class SymTab{
     public:
     SymTab(int size);
     dtype lookup(identifier name);
-    void insert(identifier name, T value);
-    T get_value(sid id);
+    void insert(identifier name, int value);
+    void insert(identifier name, bool value);
+    int get_value(sid id);
     sid get_sid(identifier name);
+    void assign(identifier &prev_id, identifier &new_id);
+    void assign(identifier id, int value);
 };
 
 
