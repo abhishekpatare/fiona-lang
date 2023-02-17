@@ -4,6 +4,8 @@
 #ifndef SYM_TAB
 #define SYM_TAB
 
+const int TAB_SIZE=100;
+
 typedef unsigned int sid;
 typedef unsigned int const_sid;
 typedef std::string identifier;
@@ -21,21 +23,20 @@ class SymTabEntry{
 
 
 class SymTab{
-    int tab_size;
-    std::vector<bool> is_filled;
-    std::vector<SymTabEntry*> entries;
-    std::map<identifier, sid> identifier_dict;
+    static std::vector<bool> is_filled;
+    static std::vector<SymTabEntry*> entries;
+    static std::map<identifier, sid> identifier_dict;
     
 
     public:
-    SymTab(int size);
-    dtype lookup(identifier name);
-    void insert(identifier name, int value);
-    void insert(identifier name, bool value);
-    int get_value(sid id);
-    sid get_sid(identifier name);
-    void assign(identifier &prev_id, identifier &new_id);
-    void assign(identifier id, int value);
+    SymTab();
+    static dtype lookup(identifier name);
+    static void insert(identifier name, int value);
+    static void insert(identifier name, bool value);
+    static int get_value(sid id);
+    static sid get_sid(identifier name);
+    static void assign(identifier &prev_id, identifier &new_id);
+    static void assign(identifier id, int value);
 };
 
 

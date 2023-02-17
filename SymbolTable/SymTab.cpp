@@ -2,8 +2,8 @@
 #include "stdexcept"
 
 
-SymTab::SymTab(int size){
-    tab_size=size;
+SymTab::SymTab(){
+    int size=TAB_SIZE;
     is_filled.resize(size);
     entries.resize(size);
 }
@@ -21,7 +21,7 @@ dtype SymTab::lookup(identifier name){
 
 
 void SymTab::insert(identifier name, int value){
-    for(int i=0;i<tab_size;i++){
+    for(int i=0;i<TAB_SIZE;i++){
         if(!is_filled[i]){
             SymTabEntry* ent  = (SymTabEntry*)malloc(sizeof(SymTabEntry));
             int* v = (int*)malloc(sizeof(int));
@@ -32,7 +32,7 @@ void SymTab::insert(identifier name, int value){
             ent->type = INT;
             break;
         }
-        if(i==tab_size-1){
+        if(i==TAB_SIZE-1){
             throw std::runtime_error("error");
         }
     }

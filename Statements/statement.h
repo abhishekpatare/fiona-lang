@@ -1,4 +1,3 @@
-
 #include "../AstNode.h"
 #ifndef STATEMENT_NODE
 #define STATEMENT_NODE

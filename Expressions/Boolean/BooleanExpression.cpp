@@ -1,6 +1,6 @@
 #include "BooleanExpression.h"
 #include "../expression.h"
-#include "SymTabEntry.h"
+#include "SymTab.h"
 
 
 
