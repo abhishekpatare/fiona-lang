@@ -1,50 +1,45 @@
 #include "SymTab.h"
-#include "stdexcept"
 
-template<typename T>
-VarTab<T>::VarTab(int size){
-    tab_size=size;
-    is_filled.resize(size);
-    entries.resize(size);
+
+void Symtab::pop(Symtab* curr){
+    curr = curr->parent;
 }
 
-template<typename T>
-bool VarTab<T>::lookup(identifier name){
-    if(identifier_dict.find(name)!=identifier_dict.end()){
-        return true;
+int Symtab::get(string &identifier){
+    
+    if(this->data.find(identifier)!=this->data.end()){
+        return this->data[identifier];
     }
-    else{
-        return false;
+    if(this->parent!=nullptr){
+        return this->parent->get(identifier);
     }
+    throw SymbolNotFoundError(identifier);
 }
 
-template<typename T>
-void VarTab<T>::insert(identifier name, T value){
-    if(identifier_dict.find(name)!=identifier_dict.end()){
-        entries[identifier_dict[name]]=value;
-    }
-    else{
-        for(int i=0;i<tab_size;i++){
-            if(!is_filled[i]){
-                identifier_dict[name]=i;
-                is_filled[i]=true;
-                sid_dict[i]=name;
-                entries[i]=value;
-                break;
-            }
-            if(i==tab_size-1){
-                throw std::runtime_error("error")
-            }
-        }
+void Symtab::insert(string&identifier , int value){
+    if(this->data.find(identifier)==this->data.end()){
+        this->data[identifier] = value;
+    }else{
+        throw SymbolAlreadyExistsError(identifier);
     }
 }
 
-template<typename T>
-T VarTab<T>::get_value(sid id){
-    return entries[i];
+
+void Symtab::update(string &identifier,int value){
+    
+    if(this->data.find(identifier)!=this->data.end()){
+        this->data[identifier] = value;
+    }
+    if(this->parent!=nullptr){
+        this->parent->update(identifier,value);
+    }
+    throw SymbolNotFoundError(identifier);
 }
 
-template<typename T>
-sid VarTab<T>::get_sid(identifier name){
-    return identifier_dict[name];
+string SymbolNotFoundError::what(){
+    return "Variable with name \"" + this->identifier +"\" does not exists !!";
+}
+
+string SymbolAlreadyExistsError::what(){
+    return "Variable with name \"" + this->identifier +"\" already exists !!";
 }

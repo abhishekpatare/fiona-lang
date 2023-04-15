@@ -1,17 +1,19 @@
 #include "IntegerExpression.h"
-
+#include <string>
+using namespace std;
 IntegerLiteralNode::IntegerLiteralNode(int value):value(value){};
+
 int IntegerLiteralNode::get_value(){
     return this->value;
 }
 
 //IntegerConstant node
-int IntegerConstantNode::get_value(){
-    // Todo
-}
-sid IntegerConstantNode::get_sid(){
-    return this->id;
-}
+// int IntegerConstantNode::get_value(){
+//     // Todo
+// }
+// sid IntegerConstantNode::get_sid(){
+//     return this->id;
+// }
 
 //IntegerAddition
 IntegerAdditionNode::IntegerAdditionNode(IntegerExpressionNode *left,IntegerExpressionNode *right):IntegerArithmeticNode(left,right){};
@@ -42,6 +44,12 @@ IntegerDivisionionNode::IntegerDivisionionNode(IntegerExpressionNode *left,Integ
 int IntegerDivisionionNode::get_value(){
     int left_value = this->left->get_value();
     int right_value = this->right->get_value();
+    if(right_value == 0){
+        throw DivideByZeroError();
+    }
     return left_value/right_value;
 }
 
+string DivideByZeroError::what(){
+    return "Division by zero is not allowed !!";
+}

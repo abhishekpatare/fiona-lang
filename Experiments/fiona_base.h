@@ -4,6 +4,11 @@ using namespace std;
 #ifndef FIONA_BASE
 #define FIONA_BASE
 
+typedef string identifier;
+
+extern Scope* curr_scope;
+
+
 class Object{
     public:
     virtual string toString();

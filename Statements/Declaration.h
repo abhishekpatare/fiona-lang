@@ -1,9 +1,21 @@
+#include "expression.h"
 #include "statement.h"
-#include "../Variable.h"
+#include "data_types.h"
+#include "fiona_base.h"
+
+#include "SymbolTable.h"
 #ifndef DECLARATION_NODE
 #define DECLARATION_NODE
 
-class Declaration:public StatementNode, Variable{
+
+
+class DeclarationNode:public StatementNode{
+    D_TYPE type;
+    identifier id;
+    ExpressionNode* exp;
+    public:
+    DeclarationNode(D_TYPE type , identifier id , ExpressionNode* exp);
+    void execute() ;
 
 };
 #endif

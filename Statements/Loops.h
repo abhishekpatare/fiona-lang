@@ -1,8 +1,7 @@
 #include "statement.h"
 #include "BlockNode.h"
-#include "../Expressions/Boolean/BooleanExpression.h"
-#include "../Variable.h"
-#include "../Expressions/Integer/IntegerExpression.h"
+#include "expression.h"
+#include "SymbolTable.h"
 #ifndef LOOP_NODE
 #define LOOP_NODE
 
@@ -13,20 +12,19 @@ class LoopNode:public StatementNode{
     void execute();
 };
 class WhileNode:public StatementNode{
-    BooleanExpression *cond;
+    ExpressionNode *cond;
     BlockNode *blk;
 
     public:
-    WhileNode(BooleanExpression *cond,BlockNode *blk);
+    WhileNode(ExpressionNode *cond,BlockNode *blk);
     void execute();
 };
 class ForNode:public StatementNode{
-    sid id;
-    Integer *l, *r;
+    ExpressionNode *l,*r,*step;
     BlockNode *blk;
-
+    identifier loopvar;
     public:
-    ForNode(sid id , Integer*l,Integer*r);
+    ForNode(identifier loopvar, ExpressionNode*l,ExpressionNode*r,ExpressionNode*step,BlockNode*blk);
     void execute();
 };
 

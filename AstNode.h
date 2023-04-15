@@ -1,5 +1,3 @@
-#include "ExecObj.h"
-
 #ifndef AST_NODE
 #define AST_NODE
 

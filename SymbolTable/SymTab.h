@@ -1,29 +1,37 @@
-#include <string>
+#include <bits/stdc++.h>
 #ifndef SYM_TAB
 #define SYM_TAB
+using namespace std;
 
-typedef unsigned int sid;
-typedef unsigned int const_sid;
-typedef std::string identifier;
+enum Dtype{INT , REAL , CH , BLN};
 
-enum dtypes{BOOL, INT, NONE};
-
-template<typename T>
-class VarTab{
-    int tab_size;
-    vector<bool> is_filled;
-    vector<T> entries;
-    map<identifier, sid> sid_dict;
-    map<sid, identifier> identifier_dict;
-    
-
+class Symtab{
     public:
-    VarTab(int size);
-    bool lookup(string identifier);
-    void insert(string identifier, T value);
-    T get_value(sid id);
-    sid get_sid(string identifier);
+    static void pop(Symtab*curr);
+    Symtab* parent;
+    map<string,int>data;
+
+    Symtab(Symtab*_parent):parent(_parent){}
+
+    int get(string &identifier);
+    void insert(string&identifier , int value);
+    void update(string&identifier , int value);
+    void remove(string&identifier);
 };
 
+class SymbolNotFoundError : public exception{
+    private:
+    string identifier;
+    public:
+    SymbolNotFoundError(string _identifier):identifier(_identifier){}
+    string what();
+};
 
+class SymbolAlreadyExistsError : public exception{
+    private:
+    string identifier;
+    public:
+    SymbolAlreadyExistsError(string _identifier):identifier(_identifier){}
+    string what();
+};
 #endif

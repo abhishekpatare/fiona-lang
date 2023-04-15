@@ -32,6 +32,7 @@ class DType{
     virtual DType* operator>=(DType* b);
     virtual DType* operator<=(DType* b);
     virtual DType* operator==(DType* b);
+    virtual DType* operator!=(DType* b);
     virtual DType* operator&(DType* b);
     virtual DType* operator|(DType* b);
     virtual DType* operator^(DType* b);

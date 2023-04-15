@@ -125,6 +125,18 @@ DType* DType::operator ==(DType* b){
     BoolData *B=new BoolData(value);
     return B;
 }
+DType* DType::operator !=(DType* b){
+    bool value;
+    if(this->type == FLOAT || b->type == FLOAT){
+        bool value = this->getFloatValue()!=b->getFloatValue();
+        
+    }
+    else{
+        value = this->getIntValue() != b->getIntValue();
+    }
+    BoolData *B=new BoolData(value);
+    return B;
+}
 
 DType* DType::operator &(DType* b){
     

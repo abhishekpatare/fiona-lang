@@ -1,10 +1,17 @@
+#include "fiona_base.h"
+#include "SymbolTable.h"
 #include "statement.h"
-#include "../Variable.h"
-#include <vector>
-#ifndef ASSIGNMENT_NODE
-#define ASSIGNMENT_NODE
+#include "expression.h"
 
-class AssignmentIntegerNode:public StatementNode, Variable{
-    
+#ifndef FIONA_ASSIGNMENT_STMT
+#define FIONA_ASSIGNMENT_STMT
+
+class AssignmentNode:public StatementNode{
+    identifier id;
+    ExpressionNode*exp;
+    public:
+    AssignmentNode(identifier id , ExpressionNode *exp):id(id),exp(exp){}
+    void execute();
 };
+
 #endif

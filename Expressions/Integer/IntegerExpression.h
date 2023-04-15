@@ -1,6 +1,5 @@
 #include "expression.h"
-#include "../SymbolTable/SymTabEntry.h"
-#include "../../Variable.h"
+
 #ifndef INTEGEREXPRESSION_NODE
 #define INTEGEREXPRESSION_NODE
 
@@ -19,16 +18,14 @@ class IntegerLiteralNode:public Integer{
 };
 
 class IntegerConstantNode:public Integer{
-    const_sid id;
+    
     public:
     int get_value();
-    const_sid get_sid();
 };
-class IntegerVariableNode:public Integer , Variable{
-    sid id;
+class IntegerVariableNode:public Integer{
+
     public:
     int get_value();
-    sid get_sid();
 };
 
 class IntegerArithmeticNode:public IntegerExpressionNode{
@@ -56,6 +53,11 @@ class IntegerDivisionionNode:public IntegerArithmeticNode{
     public:
     IntegerDivisionionNode(IntegerExpressionNode *left,IntegerExpressionNode *right);
     int get_value();
+};
+
+class DivideByZeroError : public exception{
+    public:
+    string what();
 };
 
 #endif

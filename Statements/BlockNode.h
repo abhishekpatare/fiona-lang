@@ -1,5 +1,5 @@
 #include "statement.h"
-
+#include "fiona_base.h"
 
 #ifndef BLOCK_NODE
 #define BLOCK_NODE
