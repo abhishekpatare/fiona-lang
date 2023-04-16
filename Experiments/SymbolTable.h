@@ -1,4 +1,5 @@
 #include "fiona_base.h"
+#include "BlockNode.h"
 #include "data_types.h"
 
 #ifndef FIONA_SCOPE_SYMTAB
@@ -42,8 +43,20 @@ class Scope{
     void PopSymTab();
 };
 
+void pushScope();
+
+void popScope();
+
+class FunctionEntry{
+    public:
+    vector<identifier>parameters;
+    BlockNode* blk;
+    FunctionEntry(vector<identifier>parameters,BlockNode* blk):parameters(parameters),blk(blk){}
+};
+
 class SymbolTable{
     unordered_map<identifier, SymbolTableEntry*> table;
+    unordered_map<identifier, FunctionEntry*>func_table;
     
 
     public:
@@ -53,6 +66,9 @@ class SymbolTable{
     DType* resolve(identifier id);
     void create(identifier id);
     void insert(identifier id, DType* dt);
+    void insert_func(identifier id , vector<identifier>params , BlockNode*blk);
+
+    FunctionEntry* resolve_func(identifier id);
 
 };
 

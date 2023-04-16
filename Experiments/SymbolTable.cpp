@@ -17,6 +17,14 @@ void SymbolTableEntry::set(DType* val){
     this->val = val;
 }
 
+void pushScope(){
+    curr_scope = new Scope(curr_scope);
+}
+
+void popScope(){
+    curr_scope = curr_scope->parent;
+}
+
 Scope::Scope(Scope* parent){
     this->parent = parent;
     this->sym_tab = new SymbolTable(nullptr);
@@ -46,4 +54,8 @@ void SymbolTable::insert(identifier id, DType* dt){
         this->create(id);
     }
     this->table[id]->set(dt);
+}
+
+void SymbolTable::insert_func(identifier id ,vector<identifier>params , BlockNode*blk){
+    func_table[id] = new FunctionEntry(params,blk);
 }
