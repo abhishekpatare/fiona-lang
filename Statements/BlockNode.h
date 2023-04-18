@@ -1,13 +1,14 @@
 #include "statement.h"
+#include "StatementList.h"
 #include "fiona_base.h"
 
 #ifndef BLOCK_NODE
 #define BLOCK_NODE
 class BlockNode:StatementNode{
-    StatementNode *st1,*st2;
+    StatementList* s_list;
 
     public:
-    BlockNode(StatementNode*st1,StatementNode*st2);
+    BlockNode(StatementList* s_list);
     void execute();
 };
 #endif

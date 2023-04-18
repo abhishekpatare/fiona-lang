@@ -14,7 +14,7 @@ class DeclarationNode:public StatementNode{
     identifier id;
     ExpressionNode* exp;
     public:
-    DeclarationNode(D_TYPE type , identifier id , ExpressionNode* exp);
+    DeclarationNode(identifier id , ExpressionNode* exp);
     void execute() ;
 
 };

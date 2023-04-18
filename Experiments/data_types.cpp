@@ -211,15 +211,15 @@ DType* DType::operator -(){
     throw OperatorNotDefined("unary -");
 }
 
-DType* DType::operator -(){
+// DType* DType::operator -(){
     
-    if(this->type == FLOAT){
-        FloatData *F = new FloatData(-this->getFloatValue());
-        return F;
-    }
-    IntData *I = new IntData(-this->getIntValue());
-    return I;
-}
+//     if(this->type == FLOAT){
+//         FloatData *F = new FloatData(-this->getFloatValue());
+//         return F;
+//     }
+//     IntData *I = new IntData(-this->getIntValue());
+//     return I;
+// }
 DType* DType::operator !(){
     
     if(this->type == INT){
@@ -251,6 +251,10 @@ bool FloatData::getBoolValue(){
 int FloatData::getIntValue(){
     return (int)this->value;
 }
+DType* FloatData::clone(){
+    DType* copy=new FloatData(this->getFloatValue());
+    return copy;
+}
 string FloatData::toString(){
     return to_string(this->value);
 }
@@ -266,6 +270,10 @@ bool IntData::getBoolValue(){
 }
 int IntData::getIntValue(){
     return this->value;
+}
+DType* IntData::clone(){
+    IntData* copy=new IntData(this->getIntValue());
+    return copy;
 }
 string IntData::toString(){
     return to_string(this->value);
@@ -283,6 +291,10 @@ bool BoolData::getBoolValue(){
 int BoolData::getIntValue(){
     return (int)this->value;
 }
+DType* BoolData::clone(){
+    BoolData* copy=new BoolData(this->getBoolValue());
+    return copy;
+}
 string BoolData::toString(){
     return to_string(this->value);
 }
@@ -298,6 +310,10 @@ bool CharData::getBoolValue(){
 }
 int CharData::getIntValue(){
     return (int)this->value;
+}
+DType* CharData::clone(){
+    CharData* copy=new CharData(this->getIntValue());
+    return copy;
 }
 string CharData::toString(){
     string f({this->value});

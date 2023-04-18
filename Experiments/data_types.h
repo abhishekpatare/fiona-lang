@@ -23,6 +23,9 @@ class DType{
     virtual float getFloatValue();
     virtual int getIntValue();
     virtual bool getBoolValue();
+    virtual DType* clone(){
+        
+    }
     virtual DType* operator+(DType* b);
     virtual DType* operator-(DType* b);
     virtual DType* operator*(DType* b);
@@ -53,6 +56,7 @@ class FloatData : public DType{
     float getFloatValue();
     bool getBoolValue();
     int getIntValue();
+    DType* clone();
     string toString()override;
 };
 class IntData : public DType{
@@ -62,6 +66,7 @@ class IntData : public DType{
     float getFloatValue();
     bool getBoolValue();
     int getIntValue();
+    DType* clone();
     string toString()override;
 };
 
@@ -72,6 +77,7 @@ class BoolData : public DType{
     float getFloatValue();
     bool getBoolValue();
     int getIntValue();
+    DType* clone();
     string toString()override;
 };
 
@@ -82,6 +88,7 @@ class CharData : public DType{
     float getFloatValue();
     bool getBoolValue();
     int getIntValue();
+    DType* clone();
     string toString()override;
 };
 

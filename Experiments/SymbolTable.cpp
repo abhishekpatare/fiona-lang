@@ -1,16 +1,16 @@
 #include "SymbolTable.h"
 
 
-SymbolNotDefined::SymbolNotDefined(const char* symbol_name){
-    this->symbol_name = symbol_name;
-}
-const char* SymbolNotDefined::what(){
-    return ("symbol "+string(symbol_name)+" not defined").c_str();
-}
+// SymbolNotDefined::SymbolNotDefined(const char* symbol_name){
+//     this->symbol_name = symbol_name;
+// }
+// const char* SymbolNotDefined::what(){
+//     return ("symbol "+string(symbol_name)+" not defined").c_str();
+// }
 
 SymbolTableEntry::SymbolTableEntry(identifier name,DType* val, bool b , bool c):name(name),val(val),isDefined(b),isConstant(c){}
 DType* SymbolTableEntry::get(){
-    if(!isDefined)throw SymbolNotDefined(name.c_str());
+    // if(!isDefined)throw SymbolNotDefined(name.c_str());
     return this->val;
 }
 void SymbolTableEntry::set(DType* val){
@@ -49,11 +49,24 @@ DType* SymbolTable::resolve(identifier id){
 void SymbolTable::create(identifier id){
     this->table[id] = new SymbolTableEntry(id);
 }
-void SymbolTable::insert(identifier id, DType* dt){
+void SymbolTable::insert_byref(identifier id, DType* dt){
     if(table[id] == nullptr){
         this->create(id);
     }
     this->table[id]->set(dt);
+}
+
+void SymbolTable::insert_byval(identifier id, DType* dt){
+    if(table[id] == nullptr) this->create(id);
+    this->table[id]->set(dt->clone());
+}
+
+void SymbolTable::update_byref(identifier id, DType* dt){
+    this->table[id]->set(dt);
+}
+
+void SymbolTable::update_byval(identifier id, DType* dt){
+    this->table[id]->set(dt->clone());
 }
 
 void SymbolTable::insert_func(identifier id ,vector<identifier>params , BlockNode*blk){

@@ -5,14 +5,14 @@
 #ifndef FIONA_SCOPE_SYMTAB
 #define FIONA_SCOPE_SYMTAB
 
-class SymbolNotDefined:public exception,Object{
-    const char* symbol_name;
-    public:
+// class SymbolNotDefined:public exception,Object{
+//     const char* symbol_name;
+//     public:
 
-    SymbolNotDefined(const char* symbol_name);
-    const char* what();
-    string toString();
-};
+//     SymbolNotDefined(const char* symbol_name);
+//     const char* what();
+//     string toString();
+// };
 
 class SymbolTableEntry{
     identifier name;
@@ -32,17 +32,6 @@ class SymbolTableEntry{
 };
 
 
-class Scope{
-    Scope* parent;
-    SymbolTable* sym_tab;
-
-    public:
-    Scope(Scope* parent);
-    // ~Scope();
-    void PushSymTab();
-    void PopSymTab();
-};
-
 void pushScope();
 
 void popScope();
@@ -56,8 +45,7 @@ class FunctionEntry{
 
 class SymbolTable{
     unordered_map<identifier, SymbolTableEntry*> table;
-    unordered_map<identifier, FunctionEntry*>func_table;
-    
+    unordered_map<identifier, FunctionEntry*>func_table; 
 
     public:
     SymbolTable* parent;
@@ -65,11 +53,27 @@ class SymbolTable{
     // ~SymbolTable();
     DType* resolve(identifier id);
     void create(identifier id);
-    void insert(identifier id, DType* dt);
+    void insert_byref(identifier id, DType* dt);
+    void insert_byval(identifier id, DType* dt);
+    void update_byref(identifier id, DType* dt);
+    void update_byval(identifier id, DType* dt);
     void insert_func(identifier id , vector<identifier>params , BlockNode*blk);
 
     FunctionEntry* resolve_func(identifier id);
 
 };
+
+
+class Scope{
+    Scope* parent;
+
+    public:
+    SymbolTable* sym_tab;
+    Scope(Scope* parent);
+    // ~Scope();
+    void PushSymTab();
+    void PopSymTab();
+};
+
 
 #endif

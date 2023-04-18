@@ -2,16 +2,10 @@
 
 
 
-BlockNode::BlockNode(StatementNode*st1 , StatementNode*st2){
-    this->st1=st1;
-    this->st2=st2;
-}
+BlockNode::BlockNode(StatementList* s_list):s_list(s_list){}
+
 void BlockNode::execute(){
     curr_scope->PushSymTab();
-    st1->execute();
-    if(st2!=nullptr){
-        st2->execute();
-    }else{
-        curr_scope->PopSymTab();
-    }
+    if(s_list!=nullptr) s_list->execute();
+    curr_scope->PopSymTab();
 }
