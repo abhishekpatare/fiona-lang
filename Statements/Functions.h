@@ -44,4 +44,11 @@ class FunctionCallNode:public StatementNode{
     FunctionCallNode(ArgList*args,identifier id , BlockNode*blk):args(args),id(id){}
     void execute();
 };
+
+
+class FunctionDefList{
+    FunctionDefList*left;
+    FunctionDefinitionNode*right;
+    
+};
 #endif

@@ -13,6 +13,7 @@ void get_arg_list(ArgList* p , vector<DType*>&args){
 }
 
 void FunctionDefinitionNode::execute(){
+    identifier func_name;
     vector<identifier>params;
     get_param_list(parameters,params);
     SymbolTable* curr_tab = curr_scope->sym_tab;
@@ -32,3 +33,4 @@ void FunctionCallNode::execute(){
     fn->blk->execute();
     popScope();
 }
+
