@@ -6,7 +6,6 @@ using namespace std;
 
 typedef string identifier;
 
-extern Scope* curr_scope;
 
 
 class Object{

@@ -1,10 +1,11 @@
 #include "fiona_base.h"
-#include "Exceptions,h"
+#include "Exceptions.h"
 
 #ifndef FIONA_D_TYPES
 #define FIONA_D_TYPES
 enum D_TYPE{
-    FLOAT,
+    VOID,
+    REAL,
     INT,
     BOOL,
     CHAR
@@ -92,4 +93,10 @@ class CharData : public DType{
     string toString()override;
 };
 
+
+class Void: public DType{
+    public:
+    Void():DType(VOID){};
+    
+};
 #endif

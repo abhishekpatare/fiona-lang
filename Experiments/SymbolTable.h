@@ -1,9 +1,10 @@
 #include "fiona_base.h"
-#include "BlockNode.h"
+// #include "../Statements/BlockNode.h"
 #include "data_types.h"
 
 #ifndef FIONA_SCOPE_SYMTAB
 #define FIONA_SCOPE_SYMTAB
+
 
 // class SymbolNotDefined:public exception,Object{
 //     const char* symbol_name;
@@ -13,6 +14,8 @@
 //     const char* what();
 //     string toString();
 // };
+
+class BlockNode;
 
 class SymbolTableEntry{
     identifier name;
@@ -40,12 +43,11 @@ class FunctionEntry{
     public:
     vector<identifier>parameters;
     BlockNode* blk;
-    FunctionEntry(vector<identifier>parameters,BlockNode* blk):parameters(parameters),blk(blk){}
+    FunctionEntry(vector<identifier>parameters,BlockNode* blk):parameters(parameters),blk(blk){};
 };
 
 class SymbolTable{
     unordered_map<identifier, SymbolTableEntry*> table;
-    unordered_map<identifier, FunctionEntry*>func_table; 
 
     public:
     SymbolTable* parent;
@@ -65,9 +67,10 @@ class SymbolTable{
 
 
 class Scope{
-    Scope* parent;
+    
 
     public:
+    Scope* parent;
     SymbolTable* sym_tab;
     Scope(Scope* parent);
     // ~Scope();
@@ -75,5 +78,9 @@ class Scope{
     void PopSymTab();
 };
 
+
+
+extern Scope* curr_scope;
+extern unordered_map<identifier, FunctionEntry*> func_table; 
 
 #endif

@@ -15,7 +15,7 @@ bool DType::getBoolValue(){
 }
 DType* DType::operator +(DType* b){
     
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         float value = this->getFloatValue()+b->getFloatValue();
         FloatData *F = new FloatData(value);
         return F;
@@ -27,7 +27,7 @@ DType* DType::operator +(DType* b){
 }
 DType* DType::operator -(DType* b){
     
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         float value = this->getFloatValue()-b->getFloatValue();
         FloatData *F = new FloatData(value);
         return F;
@@ -39,7 +39,7 @@ DType* DType::operator -(DType* b){
 }
 DType* DType::operator *(DType* b){
     
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         float value = this->getFloatValue()*b->getFloatValue();
         FloatData *F = new FloatData(value);
         return F;
@@ -51,7 +51,7 @@ DType* DType::operator *(DType* b){
 }
 DType* DType::operator /(DType* b){
     
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         float value = this->getFloatValue()/b->getFloatValue();
         FloatData *F = new FloatData(value);
         return F;
@@ -63,7 +63,7 @@ DType* DType::operator /(DType* b){
 
 DType* DType::operator >(DType* b){
     bool value;
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         bool value = this->getFloatValue()>b->getFloatValue();
         
     }
@@ -76,7 +76,7 @@ DType* DType::operator >(DType* b){
 
 DType* DType::operator <(DType* b){
     bool value;
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         bool value = this->getFloatValue()<b->getFloatValue();
         
     }
@@ -89,7 +89,7 @@ DType* DType::operator <(DType* b){
 
 DType* DType::operator >=(DType* b){
     bool value;
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         bool value = this->getFloatValue()>=b->getFloatValue();
         
     }
@@ -102,7 +102,7 @@ DType* DType::operator >=(DType* b){
 
 DType* DType::operator <=(DType* b){
     bool value;
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         bool value = this->getFloatValue()<=b->getFloatValue();
         
     }
@@ -115,7 +115,7 @@ DType* DType::operator <=(DType* b){
 
 DType* DType::operator ==(DType* b){
     bool value;
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         bool value = this->getFloatValue()==b->getFloatValue();
         
     }
@@ -127,7 +127,7 @@ DType* DType::operator ==(DType* b){
 }
 DType* DType::operator !=(DType* b){
     bool value;
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         bool value = this->getFloatValue()!=b->getFloatValue();
         
     }
@@ -140,7 +140,7 @@ DType* DType::operator !=(DType* b){
 
 DType* DType::operator &(DType* b){
     
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         throw OperatorNotDefined("&");
     }
 
@@ -157,7 +157,7 @@ DType* DType::operator &(DType* b){
 
 DType* DType::operator |(DType* b){
     
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         throw OperatorNotDefined("&");
     }
 
@@ -174,7 +174,7 @@ DType* DType::operator |(DType* b){
 
 DType* DType::operator ^(DType* b){
     
-    if(this->type == FLOAT || b->type == FLOAT){
+    if(this->type == REAL || b->type == REAL){
         throw OperatorNotDefined("&");
     }
 
@@ -202,7 +202,7 @@ DType* DType::operator||(DType* b){
 }
 DType* DType::operator -(){
     
-    if(this->type == FLOAT){
+    if(this->type == REAL){
         FloatData *F = new FloatData(-this->getFloatValue());
         return F;
     }
@@ -213,7 +213,7 @@ DType* DType::operator -(){
 
 // DType* DType::operator -(){
     
-//     if(this->type == FLOAT){
+//     if(this->type == REAL){
 //         FloatData *F = new FloatData(-this->getFloatValue());
 //         return F;
 //     }
@@ -239,7 +239,7 @@ DType* DType::operator !(){
 }
 
 
-FloatData::FloatData(float value):DType(FLOAT){
+FloatData::FloatData(float value):DType(REAL){
     this->value = value;
 }
 float FloatData::getFloatValue(){

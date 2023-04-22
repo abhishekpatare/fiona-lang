@@ -1,3 +1,4 @@
+
 %{ 
 #include "bits/stdc++.h" 
 #include "parser.tab.h" 
@@ -18,7 +19,7 @@ void yyerror(char *);
 
 [0-9]+[.][0-9]+ {
             yylval.float_val = atof(yytext);
-            return FLOATVAL;
+            return REALVAL;
         }
 
 "true"      {
@@ -30,7 +31,7 @@ void yyerror(char *);
         return BOOLVAL;
     }
 "int"       return INTVAL;
-"float"     return FLOATVAL;
+"float"     return REALVAL;
 "bool"      return BOOLVAL;
 "char"      return CHARVAL;
 "fn"        return FUNCTION;
@@ -67,6 +68,7 @@ void yyerror(char *);
 ";"         return SEMICOLON;
 ":="        return DECLARE;
 "break"     return BREAK;
+"return"    return RETURN;
 
 [a-zA-Z_][a-zA-Z_0-9]* {
             yylval.str = strdup(yytext);

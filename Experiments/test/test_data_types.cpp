@@ -3,7 +3,7 @@ using namespace std;
 
 
 enum D_TYPE{
-    FLOAT,
+    REAL,
     INT,
     BOOL,
     CHAR
@@ -31,7 +31,7 @@ class Data{
 class FloatData : public Data{
     public:
     float value;
-    FloatData(float value):Data(FLOAT){
+    FloatData(float value):Data(REAL){
         this->value = value;
     }
     float getFloatValue(){
@@ -69,7 +69,7 @@ class IntData : public Data{
 
 Data* Data::operator +(Data* b){
         
-        if(this->type == FLOAT || b->type == FLOAT){
+        if(this->type == REAL || b->type == REAL){
             float value = this->getFloatValue()+b->getFloatValue();
             FloatData *F = new FloatData(value);
             return F;
