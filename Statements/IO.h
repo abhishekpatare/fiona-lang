@@ -1,22 +1,15 @@
 #include "statement.h"
+#include "Functions.h"
 #include "../Expressions/expression.h"
-#include "../SymbolTable/SymTabEntry.h"
 #include <vector>
 #ifndef IO_NODE
 #define IO_NODE
 
-template<typename T>
 class PrintNode:public StatementNode{
-    ExpressionNode<T>*exp;
+    ArgList* arg;
     public:
-    PrintNode<T>(ExpressionNode<T>*exp);
-    void execute();
-};
-class ScanNode:public StatementNode{
-    sid id;
-    public:
-    ScanNode(sid id);
-    void execute();
+    PrintNode(ArgList* arg):arg(arg){};
+    ReturnObj* execute();
 };
 
 #endif

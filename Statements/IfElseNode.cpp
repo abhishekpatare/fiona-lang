@@ -6,12 +6,21 @@ IfElseNode::IfElseNode(ExpressionNode *cond,BlockNode*blk1,BlockNode*blk2){
     this->blk2 = blk2;
 };
 
-void IfElseNode::execute(){
+ReturnObj* IfElseNode::execute(){
     curr_scope->PushSymTab();
     if(cond->get_value()->getBoolValue()){
-        blk1->execute();
+        ReturnObj*tmp = blk1->execute();
+        if(tmp->is_break||tmp->is_return){
+             curr_scope->PopSymTab();
+             return tmp;
+        }
     }else if(blk2!=nullptr){
-        blk2->execute();
+        ReturnObj*tmp = blk1->execute();
+        if(tmp->is_break||tmp->is_return){
+             curr_scope->PopSymTab();
+             return tmp;
+        }
     }
     curr_scope->PopSymTab();
+    return new ReturnObj(nullptr,false,false);
 }

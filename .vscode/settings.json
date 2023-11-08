@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "fiona_base.h": "c",
+        "statement.h": "c",
+        "expression.h": "c",
+        "symboltable.h": "c"
+    }
+}

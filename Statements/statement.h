@@ -1,9 +1,10 @@
+// #include "../AstNode.h"
 
-#include "AstNode.h"
+#include "../Expressions/ReturnObj.h"
 #ifndef STATEMENT_NODE
 #define STATEMENT_NODE
-class StatementNode:public AstNode{
+class StatementNode{
     public:
-    virtual void execute()=0;
+    virtual ReturnObj* execute()=0;
 };
 #endif

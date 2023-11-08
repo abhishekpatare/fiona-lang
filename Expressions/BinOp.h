@@ -1,5 +1,5 @@
 #include "expression.h"
-#include "fiona_base.h"
+#include "../Experiments/fiona_base.h"
 
 #ifndef FIONA_BINOPS
 #define FIONA_BINOPS
@@ -9,7 +9,7 @@ class BinOpNode:public ExpressionNode{
     ExpressionNode*left;
     ExpressionNode*right;
     public:
-    virtual DType* get_value();
+    virtual DType* get_value(){};
     BinOpNode(ExpressionNode*left , ExpressionNode*right):left(left),right(right){}
 };
 class AdditionNode:public BinOpNode{

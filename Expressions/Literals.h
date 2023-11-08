@@ -1,7 +1,10 @@
 #include "expression.h"
+#include "../Experiments/SymbolTable.h"
 
 #ifndef FIONA_LITERALS
 #define FIONA_LITERALS
+
+//extern Scope* curr_scope;
 
 class Literal:public ExpressionNode{
     DType* dt;

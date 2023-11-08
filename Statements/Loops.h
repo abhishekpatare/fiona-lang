@@ -1,15 +1,18 @@
 #include "statement.h"
 #include "BlockNode.h"
-#include "expression.h"
-#include "SymbolTable.h"
+#include "../Expressions/expression.h"
+#include "../Experiments/SymbolTable.h"
 #ifndef LOOP_NODE
 #define LOOP_NODE
+
+
+// //extern Scope* curr_scope;
 
 class LoopNode:public StatementNode{
     BlockNode *blk;
     public:
     LoopNode(BlockNode *blk);
-    void execute();
+    ReturnObj* execute();
 };
 class WhileNode:public StatementNode{
     ExpressionNode *cond;
@@ -17,7 +20,7 @@ class WhileNode:public StatementNode{
 
     public:
     WhileNode(ExpressionNode *cond,BlockNode *blk);
-    void execute();
+    ReturnObj* execute();
 };
 class ForNode:public StatementNode{
     ExpressionNode *l,*r,*step;
@@ -25,7 +28,7 @@ class ForNode:public StatementNode{
     identifier loopvar;
     public:
     ForNode(identifier loopvar, ExpressionNode*l,ExpressionNode*r,ExpressionNode*step,BlockNode*blk);
-    void execute();
+    ReturnObj* execute();
 };
 
 #endif

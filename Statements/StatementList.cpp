@@ -2,9 +2,10 @@
 
 StatementList::StatementList(StatementList* left, StatementNode* right):left(left),right(right){}
 
-void StatementList::execute(){
+ReturnObj* StatementList::execute(){
     if(left!=nullptr){
-        left->execute();
+        ReturnObj* tmp = left->execute();
+        if(tmp->is_break || tmp->is_return)return tmp;
     }
-    right->execute();
+    return right->execute();
 }

@@ -1,15 +1,16 @@
-#include "fiona_base.h"
+#include "../Experiments/fiona_base.h"
 #include "statement.h"
-#include "expression.h"
-#include "SymbolTable.h"
+#include "../Expressions/expression.h"
+#include "../Experiments/SymbolTable.h"
 #include "BlockNode.h"
+#include "../Expressions/Variables.h"
 #ifndef FIONA_FUNCTIONS
 #define FIONA_FUNCTIONS
 
-extern Scope* curr_scope;
+//extern Scope* curr_scope;
 
 
-class ParamList:AstNode{
+class ParamList{
     public:
     ParamList*left;
     identifier right;
@@ -17,7 +18,7 @@ class ParamList:AstNode{
     ParamList(ParamList*left , identifier right):left(left),right(right){}
 };
 
-class ArgList:AstNode{
+class ArgList{
     public:
     ArgList*left;
     ExpressionNode*right;
@@ -25,24 +26,24 @@ class ArgList:AstNode{
     ArgList(ArgList*left , ExpressionNode* right):left(left),right(right){}
 };
 
-void get_param_list(ParamList* p , vector<identifier>&params);
+void get_param_list(ArgList* p , vector<identifier>&params);
 
 void get_arg_list(ArgList* p , vector<DType*>&args);
 class FunctionDefinitionNode:public StatementNode {
-    ParamList* parameters;
+    ArgList* parameters;
     identifier id;
     BlockNode*blk;
     public:
-    FunctionDefinitionNode(ParamList* parameters, identifier id , BlockNode*blk):parameters(parameters),id(id),blk(blk){}
-    void execute();
+    FunctionDefinitionNode(ArgList* parameters, identifier id , BlockNode*blk):parameters(parameters),id(id),blk(blk){}
+    ReturnObj* execute();
 };
 
-class FunctionCallNode:public StatementNode{
+class FunctionCallNode:public ExpressionNode{
     ArgList* args;
     identifier id;
     public:
-    FunctionCallNode(ArgList*args,identifier id , BlockNode*blk):args(args),id(id){}
-    void execute();
+    FunctionCallNode(ArgList*args,identifier id):args(args),id(id){}                //Check BlockNode* argument
+    DType* get_value();
 };
 
 
